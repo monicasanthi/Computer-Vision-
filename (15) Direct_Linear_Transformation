@@ -1,0 +1,12 @@
+import cv2
+import numpy as np
+source_points = np.array([[0, 0], [100, 0], [100, 100], [0, 100]], dtype=np.float32)
+destination_points = np.array([[50, 50], [150, 50], [150, 150], [50, 150]], dtype=np.float32)
+homography_matrix = cv2.getPerspectiveTransform(source_points, destination_points)
+source_image = cv2.imread("C:/Users/REVANTH SANTHIPRASAD/OneDrive/Desktop/monica/CV/im.jpg")
+destination_image = cv2.imread("C:/Users/REVANTH SANTHIPRASAD/OneDrive/Desktop/monica/CV/image.jpg")
+transformed_image = cv2.warpPerspective(source_image, homography_matrix, (destination_image.shape[1], destination_image.shape[0]))
+result = cv2.addWeighted(transformed_image, 0.5, destination_image, 0.5, 0)
+cv2.imshow('Result', result)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
