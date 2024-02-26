@@ -1,0 +1,18 @@
+import cv2
+cap = cv2.VideoCapture("C:/Users/REVANTH SANTHIPRASAD/OneDrive/Desktop/monica/CV/vdo.mp4")
+frame_rate = 30 
+while True:
+    ret, frame = cap.read()
+    cv2.imshow('Video', frame)
+    key = cv2.waitKey(1) & 0xFF
+    if key == ord('q'):
+        break
+    elif key == ord('s'):
+        frame_rate = max(1, frame_rate - 5)  
+    elif key == ord('f'):
+        frame_rate += 5  
+    delay = int(1000 / frame_rate)
+    if cv2.waitKey(delay) & 0xFF == ord('q'):
+        break
+cap.release()
+cv2.destroyAllWindows()
