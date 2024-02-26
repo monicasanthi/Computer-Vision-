@@ -1,0 +1,10 @@
+import cv2
+original_image = cv2.imread("C:/Users/REVANTH SANTHIPRASAD/OneDrive/Desktop/monica/CV/im.jpg")
+scale_factor_bigger = 2 
+bigger_image = cv2.resize(original_image, None, fx=scale_factor_bigger, fy=scale_factor_bigger, interpolation=cv2.INTER_LINEAR)
+scale_factor_smaller = 0.5  
+smaller_image = cv2.resize(original_image, None, fx=scale_factor_smaller, fy=scale_factor_smaller, interpolation=cv2.INTER_LINEAR)
+cv2.imshow('Bigger Image', bigger_image)
+cv2.imshow('Smaller Image', smaller_image)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
