@@ -1,0 +1,16 @@
+import cv2
+import numpy as np
+image = cv2.imread("C:/Users/REVANTH SANTHIPRASAD/OneDrive/Desktop/monica/CV/im.jpg", cv2.IMREAD_GRAYSCALE)
+gradient_x = cv2.Sobel(image, cv2.CV_64F, 1, 0, ksize=3)
+gradient_y = cv2.Sobel(image, cv2.CV_64F, 0, 1, ksize=3)
+gradient_magnitude = cv2.magnitude(gradient_x, gradient_y)
+laplacian_kernel = np.array([[0, -1, 0],[-1, 4, -1],[0, -1, 0]])
+laplacian_gradient = cv2.filter2D(gradient_magnitude, -1, laplacian_kernel)
+laplacian_gradient = laplacian_gradient.astype(image.dtype)
+k = 1.5  
+sharpened = cv2.addWeighted(image, 1 + k, laplacian_gradient, -k, 0)
+cv2.imshow('Original Image', image)
+cv2.imshow('Gradient Magnitude', gradient_magnitude.astype(np.uint8))
+cv2.imshow('Sharpened Image', sharpened.astype(np.uint8))
+cv2.waitKey(0)
+cv2.destroyAllWindows()
