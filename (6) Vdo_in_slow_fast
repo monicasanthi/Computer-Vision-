@@ -1,0 +1,16 @@
+import cv2
+video_capture = cv2.VideoCapture("C:/Users/REVANTH SANTHIPRASAD/OneDrive/Desktop/monica/CV/vdo.mp4")
+if not video_capture.isOpened():
+    print("Error: Could not open video file.")
+while video_capture.isOpened():
+    ret, frame = video_capture.read()
+    if not ret:
+        break
+    cv2.imshow('Original Video', frame)
+    cv2.waitKey(25)  
+    cv2.imshow('Slow Motion', frame)
+    cv2.waitKey(80)  
+    cv2.imshow('Fast Motion', frame)
+    cv2.waitKey(10) 
+video_capture.release()
+cv2.destroyAllWindows()
